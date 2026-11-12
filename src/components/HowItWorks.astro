@@ -1,0 +1,40 @@
+---
+// The diagram is the README's "How it works", with the first arrow shortened to fit.
+const diagram = ` browser ──HTTP + WebSocket──▶ server (Node) ──────▶ model provider
+   UI      owner session only   ├─ agent registry   profiles on disk
+                                ├─ loop             one per running conversation
+                                ├─ tools            built-in, MCP, skills
+                                ├─ mcp clients      hold connector credentials
+                                ├─ agent state      brief, notes, plan
+                                ├─ autopilot        routines, inbox, publishing
+                                └─ tracer           JSONL per conversation
+                                        │
+                                        ▼
+                               shell runner (container)
+                               one workspace per agent, no secrets`;
+
+const turn = [
+  "You send a message.",
+  "The loop builds the request from the active agent's profile and calls the model.",
+  "It runs the tool calls the model returns, asking you when a rule says so.",
+  "Every message is appended to the history.",
+  "Repeat until the model answers without a tool call, or the turn's budget runs out.",
+];
+---
+
+<section id="how" class="section">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">How it works</p>
+      <h2>One server, one loop per conversation, one sandbox per agent.</h2>
+    </header>
+    <div class="how-grid">
+      <pre class="diagram" aria-label="Architecture diagram"><code>{diagram}</code></pre>
+      <div class="turn">
+        <h3>A turn</h3>
+        <ol>{turn.map((t) => <li>{t}</li>)}</ol>
+        <p class="muted">Every tool call gets exactly one result, including on error, timeout or denial.</p>
+      </div>
+    </div>
+  </div>
+</section>

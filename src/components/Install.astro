@@ -1,0 +1,146 @@
+---
+import CopyCommand from "./CopyCommand.astro";
+import { blob, REPO, INSTALL_SH, HOSTINGER_DEPLOY } from "../consts";
+
+const tabs = [
+  { id: "vps", label: "Any VPS" },
+  { id: "hostinger", label: "Hostinger" },
+  { id: "aws", label: "AWS" },
+  { id: "do", label: "DigitalOcean" },
+  { id: "local", label: "Your machine" },
+];
+
+const localSteps = `git clone https://github.com/guilhermemauro/jabuti.git
+cd jabuti
+cp .env.example .env          # set ANTHROPIC_API_KEY (or set it later in Settings)
+docker compose up -d --build
+docker compose logs jabuti    # prints the one-time setup code`;
+---
+
+<section id="install" class="section">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">Install</p>
+      <h2>Your server, your keys, your data.</h2>
+      <p>
+        Each option runs <code>deploy/compose.yml</code>: Jabuti, its shell runner and Caddy, which
+        gets HTTPS certificates on its own. You need only a server with ports 80 and 443 open.
+      </p>
+    </header>
+
+    <div class="tabs" data-tabs>
+      <div class="tablist" role="tablist" aria-label="Where to install">
+        {
+          tabs.map((t, i) => (
+            <button
+              role="tab"
+              type="button"
+              id={`tab-${t.id}`}
+              aria-controls={`t-${t.id}`}
+              aria-selected={i === 0 ? "true" : "false"}
+            >
+              {t.label}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="panel" role="tabpanel" id="t-vps" aria-labelledby="tab-vps">
+        <h3 class="panel-title">Any VPS</h3>
+        <p>As root on Ubuntu or Debian, run the line below. It prints the address and the setup code.</p>
+        <CopyCommand command={INSTALL_SH} />
+      </div>
+
+      <div class="panel" role="tabpanel" id="t-hostinger" aria-labelledby="tab-hostinger">
+        <h3 class="panel-title">Hostinger</h3>
+        <p><a class="btn btn-primary" href={HOSTINGER_DEPLOY}>Deploy on Hostinger</a></p>
+        <p>The setup code is in Docker Manager → jabuti → logs.</p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="t-aws" aria-labelledby="tab-aws">
+        <h3 class="panel-title">AWS</h3>
+        <p>
+          CloudFormation → Create stack → upload
+          <a href={blob("deploy/aws.yml")}><code>deploy/aws.yml</code></a>. The address is in the
+          stack's Outputs; the setup code in the instance's system log.
+        </p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="t-do" aria-labelledby="tab-do">
+        <h3 class="panel-title">DigitalOcean</h3>
+        <p>
+          Create a Droplet (Ubuntu 24.04, 4 GB) and, under Advanced options → Add initialization
+          scripts, paste this line:
+        </p>
+        <CopyCommand command={INSTALL_SH} />
+        <p>Then open the Droplet's console and run this for the setup code:</p>
+        <CopyCommand command="cd /opt/jabuti && docker compose logs jabuti" />
+      </div>
+
+      <div class="panel" role="tabpanel" id="t-local" aria-labelledby="tab-local">
+        <h3 class="panel-title">Your machine</h3>
+        <p>
+          You need <a href="https://docs.docker.com/get-docker/">Docker</a> with Compose and an
+          <a href="https://console.anthropic.com/">Anthropic API key</a>.
+        </p>
+        <pre class="block"><code>{localSteps}</code></pre>
+        <p>
+          Open <code>http://localhost:4317</code>, enter the setup code and choose the owner password.
+          This setup binds to <code>127.0.0.1</code> only.
+        </p>
+      </div>
+    </div>
+
+    <div class="then">
+      <h3>Then</h3>
+      <ol>
+        <li>
+          Open <code>https://&lt;the server's IP, dots as dashes&gt;.sslip.io</code>, such as
+          <code>https://203-0-113-10.sslip.io</code>. HTTPS works before you have a domain.
+        </li>
+        <li>
+          Enter the setup code and choose the owner password <strong>right away</strong>: until then,
+          whoever has the code claims the instance.
+        </li>
+        <li><strong>Settings → Model keys</strong>: add your Anthropic key.</li>
+        <li>
+          <strong>Settings → Domain</strong>: point a domain of your own at the server (an
+          <code>A</code> record) and save it there.
+        </li>
+      </ol>
+      <p class="muted">
+        Platforms whose disk is wiped on restart, like Heroku, do not fit: Jabuti keeps its database,
+        notes and agents' workspaces on disk. Full instructions, configuration and the secret key
+        setup are in the <a href={`${REPO}#quick-start`}>README</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // WAI-ARIA tabs; arrow keys move between tabs. Without JS every panel shows with its title.
+  for (const root of document.querySelectorAll<HTMLElement>("[data-tabs]")) {
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const select = (tab: HTMLButtonElement, focus: boolean) => {
+      for (const t of tabs) {
+        const on = t === tab;
+        t.setAttribute("aria-selected", String(on));
+        t.tabIndex = on ? 0 : -1;
+        const panel = document.getElementById(t.getAttribute("aria-controls") ?? "");
+        if (panel) panel.hidden = !on;
+      }
+      if (focus) tab.focus();
+    };
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => select(tab, false));
+      tab.addEventListener("keydown", (e) => {
+        const step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+        if (!step) return;
+        e.preventDefault();
+        const next = tabs[(i + step + tabs.length) % tabs.length];
+        if (next) select(next, true);
+      });
+    });
+    if (tabs[0]) select(tabs[0], false);
+  }
+</script>

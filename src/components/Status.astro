@@ -1,0 +1,29 @@
+---
+import { blob } from "../consts";
+---
+
+<section class="section">
+  <div class="wrap status">
+    <div>
+      <p class="eyebrow">Project status</p>
+      <h2>Early, and built in public.</h2>
+      <p>
+        It runs real SEO work for its author, but expect rough edges, breaking changes in the data
+        format (handled by numbered migrations) and only one model provider for now. The direction
+        is in <a href={blob("docs/SLICES.md")}>SLICES.md</a>, and every non-obvious choice, with its
+        reason, is in <a href={blob("docs/DECISIONS.md")}>DECISIONS.md</a>.
+      </p>
+    </div>
+    <div class="contrib">
+      <h3>Contribute</h3>
+      <p>
+        From a typo to a new connector. Small pull requests, the Contract first, and no technical
+        debt merged. Open an issue first for anything larger than a fix.
+      </p>
+      <p class="ctas">
+        <a class="btn btn-primary" href={blob("CONTRIBUTING.md")}>Contributing guide</a>
+        <a class="btn" href={blob("AGENTS.md")}>Start with AGENTS.md</a>
+      </p>
+    </div>
+  </div>
+</section>

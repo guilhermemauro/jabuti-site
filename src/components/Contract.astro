@@ -1,0 +1,41 @@
+---
+import { blob } from "../consts";
+
+// A selection from AGENTS.md (C1–C21), quoted or shortened, never extended.
+const obligations: [string, string][] = [
+  ["C1", "The loop ends when the model replies without a tool call, or past the budget (steps or cost): a clean stop with a message, never a crash."],
+  ["C2", "Every tool call receives exactly one tool result, including on error, timeout or user denial."],
+  ["C3", "Shell commands run in a container without secrets, each agent confined to its own workspace."],
+  ["C4", "The system prompt lists only the name and description of each enabled skill. A skill's body enters the context only when the skill is loaded."],
+  ["C6", "History is shared across agents; capabilities are not: a tool call runs only if the current agent has that tool and permission."],
+  ["C7", "Between agent switches, the request prefix is byte-identical across steps, so prompt caching holds."],
+  ["C11", "Every failure (tool error, MCP crash, budget stop, denied approval) appears in the UI with a next step, never only in logs."],
+  ["C13", "The loop is provider-neutral: a provider SDK is imported only in its adapter folder."],
+];
+---
+
+<section id="contract" class="section section-alt">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">The Contract</p>
+      <h2>Its promises are tests.</h2>
+      <p>
+        Every guarantee is an obligation in the Contract (C1–C21), each a test run against a
+        scripted fake model: deterministic, free, and run on every commit. A few of them:
+      </p>
+    </header>
+    <dl class="contract">
+      {
+        obligations.map(([id, text]) => (
+          <div>
+            <dt>{id}</dt>
+            <dd>{text}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    <p class="more">
+      <a href={blob("AGENTS.md")}>Read all 21 obligations in AGENTS.md →</a>
+    </p>
+  </div>
+</section>

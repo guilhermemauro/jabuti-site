@@ -1,0 +1,94 @@
+---
+import { Font } from "astro:assets";
+import "../styles/global.css";
+import { REPO, blob, SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#125238" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary" />
+
+    <Font cssVariable="--font-sans" preload />
+    <Font cssVariable="--font-mono" />
+
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        name: "Jabuti",
+        description: "A self-hosted AI agent harness you can read end to end.",
+        url: Astro.site?.href,
+        codeRepository: REPO,
+        programmingLanguage: "TypeScript",
+        license: "https://opensource.org/licenses/MIT",
+      })}
+    />
+    <script is:inline>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a class="brand" href="/" aria-label="Jabuti home">
+          <img src="/favicon.svg" alt="" width="28" height="28" />
+          <span>jabuti</span>
+        </a>
+        <nav aria-label="Main">
+          <a href="/#why">Why</a>
+          <a href="/#how">How it works</a>
+          <a href="/#contract">Contract</a>
+          <a class="nav-keep" href="/#install">Install</a>
+          <a class="nav-keep nav-gh" href={REPO}>GitHub</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <p class="brand brand-sm">
+          <img src="/favicon.svg" alt="" width="20" height="20" />
+          <span>jabuti</span>
+        </p>
+        <nav aria-label="Footer">
+          <a href={REPO}>GitHub</a>
+          <a href={blob("README.md")}>README</a>
+          <a href={blob("AGENTS.md")}>AGENTS.md</a>
+          <a href={blob("SECURITY.md")}>Security</a>
+          <a href={blob("LICENSE")}>MIT License</a>
+        </nav>
+        <p class="muted">Slow to start, hard to break, and it always gets there.</p>
+      </div>
+    </footer>
+  </body>
+</html>

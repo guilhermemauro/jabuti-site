@@ -1,0 +1,61 @@
+---
+import CopyCommand from "./CopyCommand.astro";
+import { REPO, INSTALL_SH } from "../consts";
+
+const pills = ["MIT", "self-hosted", "TypeScript, no agent framework"];
+---
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="pills">
+        <span class="pill pill-warn">status: early</span>
+        {pills.map((p) => <span class="pill">{p}</span>)}
+      </p>
+      <h1>A self-hosted agent harness you can read end&nbsp;to&nbsp;end.</h1>
+      <p class="lede">
+        Several agents, each with its own model, prompt, tools, skills, MCP connectors and
+        permissions, running real work in a sandboxed shell, behind a web interface you own.
+      </p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#install">Install it</a>
+        <a class="btn" href={REPO}>Read the code on GitHub</a>
+      </div>
+      <CopyCommand command={INSTALL_SH} label="Copy install command" />
+      <p class="cmd-note">As root on any Ubuntu or Debian VPS. Prints the address and the setup code.</p>
+    </div>
+
+    {/* Field names are the real StepTrace (packages/server/src/tracer/index.ts); values are elided on purpose. */}
+    <figure class="trace" aria-label="Example of a trace line Jabuti writes for each model step">
+      <figcaption>
+        <span class="dot"></span> traces/conversation.jsonl <span class="muted">· one line per step</span>
+      </figcaption>
+      <pre><code><span class="k">{"{"}</span>
+  <span class="p">"agent"</span>: <span class="s">"blog"</span>,
+  <span class="p">"step"</span>: <span class="n">2</span>,
+  <span class="p">"toolCalls"</span>: [{"{"}
+    <span class="p">"name"</span>: <span class="s">"mcp__gsc__search_analytics"</span>,
+    <span class="p">"input"</span>: <span class="k">{"{ … }"}</span>
+  {"}"}],
+  <span class="p">"toolResults"</span>: [<span class="k">…</span>],
+  <span class="p">"inputTokens"</span>: <span class="n">…</span>,
+  <span class="p">"cacheReadTokens"</span>: <span class="n">…</span>,
+  <span class="p">"outputTokens"</span>: <span class="n">…</span>,
+  <span class="p">"costUsd"</span>: <span class="n">…</span>,
+  <span class="p">"durationMs"</span>: <span class="n">…</span>
+<span class="k">{"}"}</span></code></pre>
+      <p class="trace-foot">
+        Abridged. Input, tool calls, results, tokens, cost and duration. Traces never leave your machine.
+      </p>
+    </figure>
+  </div>
+</section>
+
+<section class="name">
+  <div class="wrap">
+    <p>
+      <strong>Jabuti</strong> <span class="ipa">/ʒa.buˈtʃi/</span> is the Brazilian tortoise: slow to
+      start, hard to break, and it always gets there. The harness is built the same way.
+    </p>
+  </div>
+</section>

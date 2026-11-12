@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Jabuti</title>
+  <rect width="64" height="64" rx="14" fill="#125238"/>
+  <!-- A tortoise shell seen from above: one central scute, six around it. -->
+  <g fill="none" stroke="#aae9c6" stroke-width="3.2" stroke-linejoin="round">
+    <path d="M32 9 52 20.5v23L32 55 12 43.5v-23Z"/>
+    <path d="M32 22.5 40.2 27.2v9.6L32 41.5l-8.2-4.7v-9.6Z"/>
+    <path d="M32 9v13.5M52 20.5l-11.8 6.7M52 43.5l-11.8-6.7M32 55V41.5M12 43.5l11.8-6.7M12 20.5l11.8 6.7"/>
+  </g>
+</svg>
