@@ -1,61 +1,64 @@
 ---
-import CopyCommand from "./CopyCommand.astro";
-import { REPO, INSTALL_SH } from "../consts";
-
-const pills = ["MIT", "self-hosted", "TypeScript, no agent framework"];
+import GitHubButton from "./GitHubButton.astro";
 ---
 
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
       <p class="pills">
-        <span class="pill pill-warn">status: early</span>
-        {pills.map((p) => <span class="pill">{p}</span>)}
+        <span class="pill">Free and open source</span>
+        <span class="pill">Self-hosted</span>
+        <span class="pill pill-warn">Early</span>
       </p>
-      <h1>A self-hosted agent harness you can read end&nbsp;to&nbsp;end.</h1>
+      <h1>The AI SEO agent that works from your data, not generic advice.</h1>
       <p class="lede">
-        Several agents, each with its own model, prompt, tools, skills, MCP connectors and
-        permissions, running real work in a sandboxed shell, behind a web interface you own.
+        Ask a chatbot about your SEO and you get a checklist: it has never seen your Search Console.
+        Jabuti's agents pull your data, analyze it with scripts they write and run, and bring back
+        what to change on which page, with the evidence. On your server, and nothing ships without
+        your approval.
       </p>
       <div class="ctas">
-        <a class="btn btn-primary" href="#install">Install it</a>
-        <a class="btn" href={REPO}>Read the code on GitHub</a>
+        <a class="btn btn-primary btn-lg" href="#install">Install it free</a>
+        <GitHubButton label="View on GitHub" class="btn-lg" />
       </div>
-      <CopyCommand command={INSTALL_SH} label="Copy install command" />
-      <p class="cmd-note">As root on any Ubuntu or Debian VPS. Prints the address and the setup code.</p>
+      <p class="hero-note">MIT license · Docker · Bring your own Anthropic API key</p>
     </div>
 
-    {/* Field names are the real StepTrace (packages/server/src/tracer/index.ts); values are elided on purpose. */}
-    <figure class="trace" aria-label="Example of a trace line Jabuti writes for each model step">
+    {/* Illustrative: the steps mirror the seo-example agent template; no real data or numbers. */}
+    <figure class="chat" aria-label="Illustration of a conversation with a Jabuti SEO agent">
       <figcaption>
-        <span class="dot"></span> traces/conversation.jsonl <span class="muted">· one line per step</span>
+        <span class="dot"></span> blog <span class="muted">· SEO agent</span>
       </figcaption>
-      <pre><code><span class="k">{"{"}</span>
-  <span class="p">"agent"</span>: <span class="s">"blog"</span>,
-  <span class="p">"step"</span>: <span class="n">2</span>,
-  <span class="p">"toolCalls"</span>: [{"{"}
-    <span class="p">"name"</span>: <span class="s">"mcp__gsc__search_analytics"</span>,
-    <span class="p">"input"</span>: <span class="k">{"{ … }"}</span>
-  {"}"}],
-  <span class="p">"toolResults"</span>: [<span class="k">…</span>],
-  <span class="p">"inputTokens"</span>: <span class="n">…</span>,
-  <span class="p">"cacheReadTokens"</span>: <span class="n">…</span>,
-  <span class="p">"outputTokens"</span>: <span class="n">…</span>,
-  <span class="p">"costUsd"</span>: <span class="n">…</span>,
-  <span class="p">"durationMs"</span>: <span class="n">…</span>
-<span class="k">{"}"}</span></code></pre>
-      <p class="trace-foot">
-        Abridged. Input, tool calls, results, tokens, cost and duration. Traces never leave your machine.
-      </p>
+      <div class="chat-body">
+        <p class="msg msg-user">Where are the quick wins in Search Console this month?</p>
+        <div class="tool">
+          <span class="tool-name">mcp__gsc__search_analytics</span>
+          <span class="tool-out">last 28 days vs the 28 before → rows saved as CSV in mcp/gsc/</span>
+        </div>
+        <div class="tool">
+          <span class="tool-name">shell</span>
+          <span class="tool-out">python3 quick_wins.py</span>
+        </div>
+        <div class="msg msg-agent">
+          <p>Recommendations, ordered by impact over effort:</p>
+          <table class="rec">
+            <thead>
+              <tr><th>Page</th><th>Change</th><th>Evidence</th><th>Expected effect</th></tr>
+            </thead>
+            <tbody>
+              {[0, 1, 2].map(() => (
+                <tr>
+                  <td><span class="bar"></span></td>
+                  <td><span class="bar"></span></td>
+                  <td><span class="bar bar-s"></span></td>
+                  <td><span class="bar bar-s"></span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="chat-foot">Illustration. Every step is traced, with its tokens and cost.</p>
     </figure>
-  </div>
-</section>
-
-<section class="name">
-  <div class="wrap">
-    <p>
-      <strong>Jabuti</strong> <span class="ipa">/ʒa.buˈtʃi/</span> is the Brazilian tortoise: slow to
-      start, hard to break, and it always gets there. The harness is built the same way.
-    </p>
   </div>
 </section>

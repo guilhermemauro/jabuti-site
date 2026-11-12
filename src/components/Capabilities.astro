@@ -1,0 +1,61 @@
+---
+const sources: { name: string; what: string }[] = [
+  { name: "Google Search Console", what: "Queries, pages, clicks, impressions, positions and URL inspection." },
+  { name: "Google Analytics 4", what: "Any report, saved as CSV for the agent to analyze." },
+  { name: "PageSpeed", what: "Lighthouse scores and LCP, INP and CLS for the pages that matter." },
+  { name: "Serper", what: "What Google shows for a query: top results and People Also Ask." },
+  { name: "DataForSEO", what: "SERPs, keyword data and AI mentions, with your own DataForSEO account." },
+  { name: "Wikipedia", what: "Facts and sources for content and data studies." },
+  { name: "Your site", what: "Crawl it, read pages and their structure: headings, links, calls to action." },
+  { name: "Any MCP server", what: "Register a remote MCP server with a token or OAuth, and pick its tools." },
+];
+
+const control: { title: string; body: string }[] = [
+  { title: "Approvals where it matters", body: "Risky shell commands, package installs and changes to an agent's profile or skills wait for you, with a diff or the exact arguments." },
+  { title: "Ask or auto, per agent", body: "Let an agent's commands run on their own, or approve each one. Choose per agent and per conversation." },
+  { title: "Budgets per turn", body: "Each agent has a cap on steps and cost. Past it, the turn stops cleanly with a message, never a crash." },
+  { title: "Experiments, not guesses", body: "Milestones you approve, each change with a measured baseline, shipped as a pull request you merge." },
+  { title: "Memory you can read", body: "A brief and dated notes in plain Markdown, per agent. You approve what it remembers." },
+  { title: "See what it did and cost", body: "One trace line per step: tool calls, results, tokens, cost and duration. Traces never leave your machine." },
+];
+---
+
+<section id="features" class="section">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">What your agents work with</p>
+      <h2>Your SEO data, connected.</h2>
+      <p>
+        Built-in connectors hold your credentials on the server and hand the agent only the data.
+      </p>
+    </header>
+    <dl class="sources">
+      {
+        sources.map((s) => (
+          <div>
+            <dt>{s.name}</dt>
+            <dd>{s.what}</dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <header class="section-head section-head-2">
+      <p class="eyebrow">You stay in charge</p>
+      <h2>Autonomy with a leash.</h2>
+      <p>
+        Agents that run real commands need limits you set, not limits you hope for.
+      </p>
+    </header>
+    <div class="cards">
+      {
+        control.map((c) => (
+          <article class="card">
+            <h3>{c.title}</h3>
+            <p>{c.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

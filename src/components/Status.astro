@@ -1,8 +1,9 @@
 ---
 import { blob } from "../consts";
+import GitHubButton from "./GitHubButton.astro";
 ---
 
-<section class="section">
+<section class="section section-alt">
   <div class="wrap status">
     <div>
       <p class="eyebrow">Project status</p>
@@ -21,8 +22,8 @@ import { blob } from "../consts";
         debt merged. Open an issue first for anything larger than a fix.
       </p>
       <p class="ctas">
-        <a class="btn btn-primary" href={blob("CONTRIBUTING.md")}>Contributing guide</a>
-        <a class="btn" href={blob("AGENTS.md")}>Start with AGENTS.md</a>
+        <GitHubButton label="Star or fork on GitHub" class="btn-primary" />
+        <a class="btn" href={blob("CONTRIBUTING.md")}>Contributing guide</a>
       </p>
     </div>
   </div>

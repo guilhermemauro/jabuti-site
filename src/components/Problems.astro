@@ -1,0 +1,62 @@
+---
+// Pain first, then what Jabuti does about it. Every "fix" must hold in the README or templates.
+const items: { pain: string; detail: string; fix: string }[] = [
+  {
+    pain: "The chatbot has never seen your data",
+    detail: "So it answers with best practices, not with the page that lost clicks last month.",
+    fix: "Agents pull Search Console, Analytics and PageSpeed through connectors and analyze the full export, not a preview.",
+  },
+  {
+    pain: "Export, paste, repeat",
+    detail: "Every report starts with downloading CSVs and pasting them into a chat that forgets them.",
+    fix: "Data lands as files in the agent's workspace, and what it learned stays in notes it keeps per site. Routines can run on a schedule.",
+  },
+  {
+    pain: "Advice you can't check",
+    detail: "A confident answer with no numbers behind it is a guess you have to trust.",
+    fix: "Each recommendation names the page, the change, the evidence and the expected effect. Every step is traced with its cost.",
+  },
+  {
+    pain: "Tools that touch your site on their own",
+    detail: "Autonomous agents are great until one rewrites the page that brings in sales.",
+    fix: "Changes ship as pull requests you merge, proposed as experiments with a measured baseline. Risky commands wait for your OK.",
+  },
+  {
+    pain: "Every site in one chat",
+    detail: "Client A's context leaks into client B's answer, and one key opens everything.",
+    fix: "One agent per site, each with its own brief, notes, workspace and keys. Switch agents mid-conversation without sharing their access.",
+  },
+  {
+    pain: "Your Google tokens on someone else's server",
+    detail: "Another SaaS, another monthly fee, another place your data and credentials live.",
+    fix: "Self-hosted and MIT licensed. Keys are encrypted at rest; the model and the shell never see them.",
+  },
+];
+---
+
+<section id="problems" class="section">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">Why SEO with AI stalls</p>
+      <h2>AI should do the analysis, not hand you a checklist.</h2>
+      <p>
+        The hard part of SEO is not knowing the best practices. It is finding which of them matter on
+        your site, this month, and proving it with your own numbers.
+      </p>
+    </header>
+    <div class="problems">
+      {
+        items.map((i) => (
+          <article class="problem">
+            <h3>{i.pain}</h3>
+            <p class="pain">{i.detail}</p>
+            <p class="fix">
+              <span class="fix-label">With Jabuti</span>
+              {i.fix}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

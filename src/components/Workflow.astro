@@ -1,0 +1,52 @@
+---
+// Mirrors agents/seo-example and agents/assistant in the product repository.
+const steps: { tag: string; title: string; body: string }[] = [
+  {
+    tag: "agents",
+    title: "It learns your site first",
+    body: "Ask the built-in assistant for an agent for your site. It reads your pages, proposes a brief (business, conversions, audience, markets, competitors) and you correct it before anything else happens.",
+  },
+  {
+    tag: "mcp__gsc__search_analytics",
+    title: "It pulls your real data",
+    body: "Search Console rows are saved as a CSV file in the agent's workspace. It compares equal periods, such as the last 28 days against the 28 before, and inspects the URLs that are not indexed.",
+  },
+  {
+    tag: "shell",
+    title: "It runs the analysis",
+    body: "The agent writes a Python script and runs it in a sandboxed Linux container. It counts what a script can count instead of estimating by eye.",
+  },
+  {
+    tag: "answer",
+    title: "You get recommendations with evidence",
+    body: "Page, change, evidence and expected effect, ordered by impact over effort. Need content? It hands a brief to a writer subagent that drafts the page in any language for your review.",
+  },
+];
+---
+
+<section id="how" class="section section-alt">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">How it works</p>
+      <h2>From a question to a change you can defend.</h2>
+      <p>
+        Jabuti ships with an SEO agent template. This is what a session with it looks like.
+      </p>
+    </header>
+    <ol class="steps">
+      {
+        steps.map((s) => (
+          <li>
+            <span class="step-tag">{s.tag}</span>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="aside">
+      After meaningful work, the agent proposes what to remember (analyses, numbers, what was
+      changed) and nothing is saved until you approve it. Next month it starts from there.
+    </p>
+  </div>
+</section>

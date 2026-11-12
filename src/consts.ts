@@ -8,6 +8,7 @@ export const INSTALL_SH =
 export const HOSTINGER_DEPLOY =
   "https://www.hostinger.com/docker-hosting?compose_url=https://raw.githubusercontent.com/guilhermemauro/jabuti/main/deploy/compose.yml&REFERRALCODE=AXUGUILHEMAI";
 
-export const SITE_TITLE = "Jabuti: a self-hosted agent harness you can read end to end";
+// SEO: the title leads with the query people search ("AI SEO agent"), then the differentiators.
+export const SITE_TITLE = "Jabuti: open source AI SEO agent for your Search Console data";
 export const SITE_DESCRIPTION =
-  "Jabuti is an open source, self-hosted AI agent harness in plain TypeScript, with no agent framework. Several agents, a sandboxed shell, MCP connectors, skills and memory you approve.";
+  "Self-hosted AI SEO agents that analyze your Search Console and Analytics data with real scripts and back every recommendation with evidence. Free and open source.";

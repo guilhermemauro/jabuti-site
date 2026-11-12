@@ -1,22 +1,32 @@
 ---
 import Base from "../layouts/Base.astro";
 import Hero from "../components/Hero.astro";
-import Features from "../components/Features.astro";
-import UseCase from "../components/UseCase.astro";
-import HowItWorks from "../components/HowItWorks.astro";
-import Contract from "../components/Contract.astro";
+import Problems from "../components/Problems.astro";
+import Workflow from "../components/Workflow.astro";
+import Capabilities from "../components/Capabilities.astro";
 import Install from "../components/Install.astro";
-import Inside from "../components/Inside.astro";
+import Faq from "../components/Faq.astro";
+import Developers from "../components/Developers.astro";
 import Status from "../components/Status.astro";
+import { faq } from "../data/faq";
+
+const faqSchema = {
+  "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 ---
 
-<Base>
+<Base schema={[faqSchema]}>
   <Hero />
-  <Features />
-  <UseCase />
-  <HowItWorks />
-  <Contract />
+  <Problems />
+  <Workflow />
+  <Capabilities />
   <Install />
-  <Inside />
+  <Faq />
+  <Developers />
   <Status />
 </Base>

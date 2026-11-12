@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <title>Jabuti</title>
-  <rect width="64" height="64" rx="14" fill="#125238"/>
-  <!-- A tortoise shell seen from above: one central scute, six around it. -->
-  <g fill="none" stroke="#aae9c6" stroke-width="3.2" stroke-linejoin="round">
-    <path d="M32 9 52 20.5v23L32 55 12 43.5v-23Z"/>
-    <path d="M32 22.5 40.2 27.2v9.6L32 41.5l-8.2-4.7v-9.6Z"/>
-    <path d="M32 9v13.5M52 20.5l-11.8 6.7M52 43.5l-11.8-6.7M32 55V41.5M12 43.5l11.8-6.7M12 20.5l11.8 6.7"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Jabuti's mark: TortoiseIcon from the product UI (packages/ui/src/Icons.tsx) on the brand square. -->
+  <rect width="32" height="32" rx="8" fill="#2f6b4f"/>
+  <g transform="translate(4 4)" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 15.5c0-4.4 3.6-8 8-8s8 3.6 8 8z"/>
+    <path d="M8 15.5l1.5-4h5l1.5 4M12 7.5v4"/>
+    <path d="M19.4 14c.3-.9 1-1.6 1.9-1.6a1.4 1.4 0 0 1 0 2.8h-1.2"/>
+    <path d="M6.5 15.5v2.5M17.5 15.5v2.5M3 15.5h18"/>
   </g>
 </svg>

@@ -1,14 +1,45 @@
 ---
 import { Font } from "astro:assets";
 import "../styles/global.css";
+import Logo from "../components/Logo.astro";
+import GitHubButton from "../components/GitHubButton.astro";
 import { REPO, blob, SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 interface Props {
   title?: string;
   description?: string;
+  /** Extra JSON-LD objects for this page. */
+  schema?: object[];
 }
-const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, schema = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL("/og.png", Astro.site);
+
+const graph = [
+  {
+    "@type": "SoftwareApplication",
+    "@id": `${Astro.site?.href}#software`,
+    name: "Jabuti",
+    description,
+    url: Astro.site?.href,
+    applicationCategory: "BusinessApplication",
+    applicationSubCategory: "AI SEO agent",
+    operatingSystem: "Linux (Docker)",
+    license: "https://opensource.org/licenses/MIT",
+    isAccessibleForFree: true,
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    downloadUrl: REPO,
+    image: ogImage.href,
+  },
+  {
+    "@type": "SoftwareSourceCode",
+    name: "Jabuti",
+    codeRepository: REPO,
+    programmingLanguage: "TypeScript",
+    license: "https://opensource.org/licenses/MIT",
+  },
+  ...schema,
+];
 ---
 
 <!doctype html>
@@ -25,10 +56,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="generator" content={Astro.generator} />
 
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Jabuti" />
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Jabuti: an open source AI SEO agent that works from your own data." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
 
     <Font cssVariable="--font-sans" preload />
     <Font cssVariable="--font-mono" />
@@ -36,16 +73,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <script
       is:inline
       type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "SoftwareSourceCode",
-        name: "Jabuti",
-        description: "A self-hosted AI agent harness you can read end to end.",
-        url: Astro.site?.href,
-        codeRepository: REPO,
-        programmingLanguage: "TypeScript",
-        license: "https://opensource.org/licenses/MIT",
-      })}
+      set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}
     />
     <script is:inline>
       document.documentElement.classList.add("js");
@@ -57,15 +85,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <header class="topbar">
       <div class="wrap topbar-inner">
         <a class="brand" href="/" aria-label="Jabuti home">
-          <img src="/favicon.svg" alt="" width="28" height="28" />
-          <span>jabuti</span>
+          <Logo />
+          <span class="brand-name">Jabuti</span>
         </a>
         <nav aria-label="Main">
-          <a href="/#why">Why</a>
           <a href="/#how">How it works</a>
-          <a href="/#contract">Contract</a>
-          <a class="nav-keep" href="/#install">Install</a>
-          <a class="nav-keep nav-gh" href={REPO}>GitHub</a>
+          <a href="/#features">Features</a>
+          <a href="/#faq">FAQ</a>
+          <a href="/#install">Install</a>
+          <GitHubButton class="nav-gh" />
         </nav>
       </div>
     </header>
@@ -76,10 +104,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
     <footer class="footer">
       <div class="wrap footer-inner">
-        <p class="brand brand-sm">
-          <img src="/favicon.svg" alt="" width="20" height="20" />
-          <span>jabuti</span>
-        </p>
+        <a class="brand" href="/" aria-label="Jabuti home">
+          <Logo size="sm" />
+          <span class="brand-name">Jabuti</span>
+        </a>
         <nav aria-label="Footer">
           <a href={REPO}>GitHub</a>
           <a href={blob("README.md")}>README</a>

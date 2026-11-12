@@ -1,0 +1,28 @@
+---
+// Jabuti's mark, exactly as the product UI draws it (packages/ui/src/Icons.tsx, TortoiseIcon).
+interface Props {
+  size?: "md" | "sm";
+}
+const { size = "md" } = Astro.props;
+const icon = size === "md" ? 22 : 17;
+---
+
+<span class:list={["brand-mark", size === "sm" && "brand-mark-sm"]}>
+  <svg
+    class="icon"
+    width={icon}
+    height={icon}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.75"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M4 15.5c0-4.4 3.6-8 8-8s8 3.6 8 8z"></path>
+    <path d="M8 15.5l1.5-4h5l1.5 4M12 7.5v4"></path>
+    <path d="M19.4 14c.3-.9 1-1.6 1.9-1.6a1.4 1.4 0 0 1 0 2.8h-1.2"></path>
+    <path d="M6.5 15.5v2.5M17.5 15.5v2.5M3 15.5h18"></path>
+  </svg>
+</span>

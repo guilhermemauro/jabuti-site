@@ -63,6 +63,15 @@ Copie comandos e links do README, nunca de memória.
   humor do jabuti. Mostre o mecanismo (loop, shell, Contract), não adjetivos.
 - **Idioma:** o README e o código estão em inglês; o texto do site segue em inglês, salvo pedido
   contrário.
+- **Foco na dor, não na construção** (pedido do dono, 2026-11-12). O site vende o problema que o
+  Jabuti resolve para quem faz SEO: IA de chat dá conselho genérico porque nunca viu os dados;
+  o agente do Jabuti puxa Search Console/GA4, analisa com script e traz recomendação com evidência,
+  no seu servidor e com aprovação. Como ele é feito (sem framework, Contract) fica na seção "For
+  developers", no fim da página.
+- **SEO do próprio site:** title e H1 com "AI SEO agent"; termos-alvo pesquisados: AI SEO agent,
+  Search Console AI agent, quick wins, self-hosted, open source. Concorrentes vistos nas SERPs:
+  OpenSEO, DispatchSEO, servidores MCP de Search Console. O FAQ (`src/data/faq.ts`) alimenta a
+  página e o JSON-LD `FAQPage`.
 - **Open source primeiro.** O CTA principal é o repositório e a instalação, não um cadastro.
 - Nada de dados privados, credenciais ou conteúdo real de usuários em páginas, exemplos ou commits.
 - PRs não mencionam o Claude Code.
@@ -72,9 +81,13 @@ Copie comandos e links do README, nunca de memória.
 **Astro 7 (estático), pnpm, Node 26, deploy no GitHub Pages** (decidido em 2026-11-12, a pedido do
 dono; substituiu uma primeira versão em HTML puro).
 
-- Estrutura: `src/pages/index.astro` monta as seções de `src/components/` (Hero, Features,
-  UseCase, HowItWorks, Contract, Install, Inside, Status). O texto de cada seção fica em arrays no
-  topo do componente. Links e comandos do produto ficam em `src/consts.ts`: copie-os do README.
+- Estrutura: `src/pages/index.astro` monta as seções de `src/components/` (Hero, Problems,
+  Workflow, Capabilities, Install, Faq, Developers, Status). O texto de cada seção fica em arrays no
+  topo do componente; o FAQ em `src/data/faq.ts`. Links e comandos do produto ficam em
+  `src/consts.ts`: copie-os do README. A logo (`Logo.astro`, `public/favicon.svg`) é o
+  `TortoiseIcon` de `packages/ui/src/Icons.tsx` sobre `#2f6b4f`, igual à interface.
+- `public/og.png` (1200×630) é a imagem de compartilhamento; foi gerada de um HTML com o Chrome
+  headless. Se o título mudar, gere de novo.
 - Estilo: `src/styles/global.css`, com as cores "Forest Console" do `docs/DESIGN.md` do produto e
   modo escuro. Sem framework de CSS.
 - Fontes: Hanken Grotesk e JetBrains Mono pela Fonts API do Astro (`astro.config.mjs`), baixadas
@@ -86,8 +99,8 @@ dono; substituiu uma primeira versão em HTML puro).
   ainda não suporta a 7.
 - O `pnpm-workspace.yaml` tem exceções à idade mínima de release do pnpm para o Astro 7.4.11, que
   era recente demais na instalação. Ao atualizar o Astro, revise essa lista.
-- O exemplo de trace no hero usa os campos reais de `StepTrace`
-  (`packages/server/src/tracer/index.ts`); se esse formato mudar, atualize o exemplo.
+- A conversa ilustrativa do hero e a seção Workflow seguem o template `agents/seo-example` do
+  produto. É ilustração: nada de números ou resultados inventados.
 
 ### Comandos
 

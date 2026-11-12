@@ -1,0 +1,45 @@
+---
+import { blob } from "../consts";
+
+const points: { title: string; body: string }[] = [
+  {
+    title: "No agent framework",
+    body: "No LangChain, LangGraph, CrewAI, Mastra or agent SDKs. The loop, tool registry, context management, permissions, skills loader and agent switching are plain TypeScript, small enough to read in an afternoon.",
+  },
+  {
+    title: "Its promises are tests",
+    body: "Every guarantee is an obligation in the Contract (C1–C21), each a test run against a scripted fake model on every commit: every tool call gets exactly one result, shells have no secrets, skills load only when used.",
+  },
+  {
+    title: "Cheap long conversations",
+    body: "Append-only history, old tool results cleared from the model's view, summaries past a larger size, and request prefixes kept byte-identical so prompt caching holds.",
+  },
+];
+---
+
+<section id="developers" class="section">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">For developers</p>
+      <h2>An agent harness you can read end to end.</h2>
+      <p>
+        Not doing SEO? Underneath, Jabuti is a general harness: several agents, each with its own
+        model, prompt, tools, skills, MCP connectors and permissions, running real work in a
+        sandboxed shell.
+      </p>
+    </header>
+    <div class="cards">
+      {
+        points.map((p) => (
+          <article class="card">
+            <h3>{p.title}</h3>
+            <p>{p.body}</p>
+          </article>
+        ))
+      }
+    </div>
+    <p class="more">
+      <a href={blob("AGENTS.md")}>Read the design and the Contract in AGENTS.md →</a>
+    </p>
+  </div>
+</section>
