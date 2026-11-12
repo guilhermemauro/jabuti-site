@@ -1,10 +1,13 @@
 ---
 import Base from "../layouts/Base.astro";
 import Hero from "../components/Hero.astro";
-import Problems from "../components/Problems.astro";
-import Workflow from "../components/Workflow.astro";
-import Capabilities from "../components/Capabilities.astro";
-import Install from "../components/Install.astro";
+import Pillars from "../components/Pillars.astro";
+import Context from "../components/Context.astro";
+import Autonomy from "../components/Autonomy.astro";
+import Authority from "../components/Authority.astro";
+import SearchModes from "../components/SearchModes.astro";
+import Control from "../components/Control.astro";
+import InstallCta from "../components/InstallCta.astro";
 import Faq from "../components/Faq.astro";
 import Developers from "../components/Developers.astro";
 import Status from "../components/Status.astro";
@@ -22,10 +25,13 @@ const faqSchema = {
 
 <Base schema={[faqSchema]}>
   <Hero />
-  <Problems />
-  <Workflow />
-  <Capabilities />
-  <Install />
+  <Pillars />
+  <Context />
+  <Autonomy />
+  <Authority />
+  <SearchModes />
+  <Control />
+  <InstallCta />
   <Faq />
   <Developers />
   <Status />

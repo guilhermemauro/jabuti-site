@@ -8,7 +8,7 @@ export const INSTALL_SH =
 export const HOSTINGER_DEPLOY =
   "https://www.hostinger.com/docker-hosting?compose_url=https://raw.githubusercontent.com/guilhermemauro/jabuti/main/deploy/compose.yml&REFERRALCODE=AXUGUILHEMAI";
 
-// SEO: the title leads with the query people search ("AI SEO agent"), then the differentiators.
-export const SITE_TITLE = "Jabuti: open source AI SEO agent for your Search Console data";
+// SEO: the title leads with what people search ("AI agent for SEO, AEO and GEO"), then the differentiators.
+export const SITE_TITLE = "Jabuti: open source AI agent for SEO, AEO and GEO, self-hosted";
 export const SITE_DESCRIPTION =
-  "Self-hosted AI SEO agents that analyze your Search Console and Analytics data with real scripts and back every recommendation with evidence. Free and open source.";
+  "Self-hosted AI agents for SEO, AEO and GEO: full context from Search Console and Analytics, experiments on a plan you approve, and studies that earn citations.";

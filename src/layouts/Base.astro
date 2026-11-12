@@ -23,7 +23,7 @@ const graph = [
     description,
     url: Astro.site?.href,
     applicationCategory: "BusinessApplication",
-    applicationSubCategory: "AI SEO agent",
+    applicationSubCategory: "AI agent for SEO, AEO and GEO",
     operatingSystem: "Linux (Docker)",
     license: "https://opensource.org/licenses/MIT",
     isAccessibleForFree: true,
@@ -52,6 +52,7 @@ const graph = [
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Jabuti blog" href="/rss.xml" />
     <meta name="theme-color" content="#125238" />
     <meta name="generator" content={Astro.generator} />
 
@@ -63,7 +64,7 @@ const graph = [
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Jabuti: an open source AI SEO agent that works from your own data." />
+    <meta property="og:image:alt" content="Jabuti: an open source AI agent for SEO, AEO and GEO." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
 
@@ -89,10 +90,10 @@ const graph = [
           <span class="brand-name">Jabuti</span>
         </a>
         <nav aria-label="Main">
-          <a href="/#how">How it works</a>
-          <a href="/#features">Features</a>
-          <a href="/#faq">FAQ</a>
-          <a href="/#install">Install</a>
+          <a href="/#autonomy">How it works</a>
+          <a href="/#seo-aeo-geo">SEO · AEO · GEO</a>
+          <a class="nav-keep" href="/install/">Install</a>
+          <a href="/blog/">Blog</a>
           <GitHubButton class="nav-gh" />
         </nav>
       </div>
@@ -109,6 +110,9 @@ const graph = [
           <span class="brand-name">Jabuti</span>
         </a>
         <nav aria-label="Footer">
+          <a href="/install/">Install</a>
+          <a href="/blog/">Blog</a>
+          <a href="/rss.xml">RSS</a>
           <a href={REPO}>GitHub</a>
           <a href={blob("README.md")}>README</a>
           <a href={blob("AGENTS.md")}>AGENTS.md</a>

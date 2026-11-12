@@ -1,0 +1,111 @@
+---
+import Base from "../layouts/Base.astro";
+import Install from "../components/Install.astro";
+import CopyCommand from "../components/CopyCommand.astro";
+import { REPO, blob } from "../consts";
+
+// Steps and commands are copied from the product's README ("Quick start", "First steps").
+const firstSteps: { title: string; body: string }[] = [
+  {
+    title: "Settings → Agents",
+    body: "The assistant agent comes ready. Ask it to create an agent for your site: it reads the site, proposes a brief and writes the profile, and you approve each change. An SEO agent template is included.",
+  },
+  {
+    title: "Settings → Variables",
+    body: "Add the keys your connectors need (each connector says where to get its key), scoped to the agents that may use them.",
+  },
+  {
+    title: "Settings → Skills and Connectors",
+    body: "Turn on the methods and MCP servers each agent should have: Search Console, Analytics 4, PageSpeed, Serper, DataForSEO and more.",
+  },
+  {
+    title: "Start a conversation",
+    body: "Pick the agent and give it work. When it has a plan, approve its milestones and turn on its routine so it keeps going on a schedule.",
+  },
+];
+
+const breadcrumbs = {
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Jabuti", item: "https://getjabuti.com/" },
+    { "@type": "ListItem", position: 2, name: "Install", item: "https://getjabuti.com/install/" },
+  ],
+};
+---
+
+<Base
+  title="Install Jabuti: self-hosted AI SEO agent on your own server"
+  description="Install Jabuti on any VPS with one command, with a Hostinger button, AWS CloudFormation, a DigitalOcean Droplet or Docker on your machine. HTTPS included."
+  schema={[breadcrumbs]}
+>
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Install</p>
+      <h1>Install Jabuti on your own server.</h1>
+      <p class="lede">
+        Every option runs the same Docker Compose file: Jabuti, its sandboxed shell runner and
+        Caddy, which gets HTTPS certificates on its own. You need a server with ports 80 and 443
+        open, and an Anthropic API key.
+      </p>
+      <dl class="reqs">
+        <div><dt>Server</dt><dd>Ubuntu or Debian VPS; 4 GB of RAM on DigitalOcean</dd></div>
+        <div><dt>Disk</dt><dd>Persistent: database, notes and workspaces live on disk</dd></div>
+        <div><dt>Model</dt><dd>Your Anthropic API key, added in Settings</dd></div>
+        <div><dt>Domain</dt><dd>Optional at first: an sslip.io address works right away</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <Install />
+
+  <section class="section section-alt">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">First steps</p>
+        <h2>From a fresh install to an agent at work.</h2>
+      </header>
+      <ol class="steps steps-4">
+        {
+          firstSteps.map((s) => (
+            <li>
+              <h3>{s.title}</h3>
+              <p>{s.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap two-col">
+      <div>
+        <h2>Updating</h2>
+        <p>
+          <strong>Settings → Version</strong> shows the running version and, when a newer release
+          exists, what changed. To update, run this in the folder with the compose file
+          (<code>/opt/jabuti</code> for the install script), or update the project in Hostinger's
+          Docker Manager:
+        </p>
+        <CopyCommand command="docker compose pull && docker compose up -d" />
+        <p class="muted">
+          To check for releases, the server asks GitHub twice a day: an anonymous request that sends
+          nothing about your instance.
+        </p>
+      </div>
+      <div>
+        <h2>Keep the secret key apart</h2>
+        <p>
+          Model keys, connector tokens and variables are stored encrypted. By default the key that
+          opens them lives in the data directory, and Settings warns about it. Move it into the
+          environment, without generating a new one, as described in the
+          <a href={`${REPO}#secret-key`}>README</a>.
+        </p>
+        <p>
+          Found a vulnerability? Report it privately, as described in
+          <a href={blob("SECURITY.md")}>SECURITY.md</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

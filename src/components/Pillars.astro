@@ -1,0 +1,53 @@
+---
+// The three premises the product is built on. Each links to its section below.
+const pillars: { n: string; title: string; pain: string; premise: string; href: string }[] = [
+  {
+    n: "01",
+    title: "Full context",
+    pain: "A connected chat sees one report at a time, and forgets it next week.",
+    premise: "Impressions, clicks and conversions together, with your site, the results page and your business. You choose the north star.",
+    href: "#context",
+  },
+  {
+    n: "02",
+    title: "An agent that acts, not reacts",
+    pain: "A chat waits for your next question. Nobody follows up or measures.",
+    premise: "Milestones you approve, changes shipped as experiments with a baseline, and routine runs that keep going on a schedule.",
+    href: "#autonomy",
+  },
+  {
+    n: "03",
+    title: "Built to earn authority",
+    pain: "Rewriting what already ranks does not make anyone cite you.",
+    premise: "Original studies from your own data: figures that journalists, blogs and AI answers cite and link to.",
+    href: "#authority",
+  },
+];
+---
+
+<section id="premises" class="section">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">Three premises</p>
+      <h2>A connected chat gives you answers. Jabuti does the work.</h2>
+      <p>
+        You can export Search Console or plug it into a chatbot. You still have to ask the right
+        question every time, remember what you tried and check whether it worked. Jabuti is built
+        on three premises to take that off your hands.
+      </p>
+    </header>
+    <div class="pillars">
+      {
+        pillars.map((p) => (
+          <a class="pillar" href={p.href}>
+            <span class="pillar-n">{p.n}</span>
+            <h3>{p.title}</h3>
+            <p class="pain">{p.pain}</p>
+            <p class="premise">{p.premise}</p>
+            <span class="pillar-more">How it works →</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

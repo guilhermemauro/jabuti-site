@@ -1,0 +1,29 @@
+---
+const control: { title: string; body: string }[] = [
+  { title: "Approvals where it matters", body: "Risky shell commands, package installs and changes to an agent's profile, skills or brief wait for you, with a diff or the exact arguments." },
+  { title: "Ask or auto, per agent", body: "Let an agent's commands run on their own, or approve each one. Choose per agent and per conversation." },
+  { title: "Budgets per turn", body: "Each agent has a cap on steps and cost per turn. Past it, the turn stops cleanly with a message, never a crash." },
+  { title: "Real work in a sandbox", body: "Analysis scripts run in a Linux container with Python, one workspace per agent, with no secret from the server." },
+  { title: "Keys stay on the server", body: "Encrypted at rest and handed only to the connectors of the agents allowed to use them. The model never sees them." },
+  { title: "See what it did and cost", body: "One trace line per step: tool calls, results, tokens, cost and duration. Traces never leave your machine." },
+];
+---
+
+<section id="control" class="section section-alt">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">You stay in charge</p>
+      <h2>Limits you set, not limits you hope for.</h2>
+    </header>
+    <div class="cards">
+      {
+        control.map((c) => (
+          <article class="card">
+            <h3>{c.title}</h3>
+            <p>{c.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

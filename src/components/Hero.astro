@@ -10,55 +10,53 @@ import GitHubButton from "./GitHubButton.astro";
         <span class="pill">Self-hosted</span>
         <span class="pill pill-warn">Early</span>
       </p>
-      <h1>The AI SEO agent that works from your data, not generic advice.</h1>
+      <h1>The AI agent that works on your SEO, AEO and GEO. Not just a chat.</h1>
       <p class="lede">
-        Ask a chatbot about your SEO and you get a checklist: it has never seen your Search Console.
-        Jabuti's agents pull your data, analyze it with scripts they write and run, and bring back
-        what to change on which page, with the evidence. On your server, and nothing ships without
-        your approval.
+        Jabuti sees impressions, clicks and conversions for your whole business, works on a plan
+        you approve instead of waiting for prompts, and publishes original studies that earn
+        citations. Open source, on your own server.
       </p>
       <div class="ctas">
-        <a class="btn btn-primary btn-lg" href="#install">Install it free</a>
+        <a class="btn btn-primary btn-lg" href="/install/">Install it free</a>
         <GitHubButton label="View on GitHub" class="btn-lg" />
       </div>
       <p class="hero-note">MIT license · Docker · Bring your own Anthropic API key</p>
     </div>
 
-    {/* Illustrative: the steps mirror the seo-example agent template; no real data or numbers. */}
-    <figure class="chat" aria-label="Illustration of a conversation with a Jabuti SEO agent">
+    {/* Illustrative: mirrors the plan tool (milestones, experiments, routine runs). No real data. */}
+    <figure class="chat" aria-label="Illustration of a Jabuti agent's plan and inbox">
       <figcaption>
-        <span class="dot"></span> blog <span class="muted">· SEO agent</span>
+        <span class="dot"></span> blog <span class="muted">· plan</span>
       </figcaption>
       <div class="chat-body">
-        <p class="msg msg-user">Where are the quick wins in Search Console this month?</p>
-        <div class="tool">
-          <span class="tool-name">mcp__gsc__search_analytics</span>
-          <span class="tool-out">last 28 days vs the 28 before → rows saved as CSV in mcp/gsc/</span>
+        <div class="plan-row">
+          <span class="state state-done">approved</span>
+          <span>Milestone: grow clicks from non-brand queries</span>
         </div>
         <div class="tool">
-          <span class="tool-name">shell</span>
-          <span class="tool-out">python3 quick_wins.py</span>
+          <span class="tool-name">routine run</span>
+          <span class="tool-out">measure: Search Console, by device, vs control pages</span>
+        </div>
+        <div class="tool">
+          <span class="tool-name">mcp__dataforseo__ai_mentions</span>
+          <span class="tool-out">which AI answers cite the site, and who they cite instead</span>
         </div>
         <div class="msg msg-agent">
-          <p>Recommendations, ordered by impact over effort:</p>
-          <table class="rec">
-            <thead>
-              <tr><th>Page</th><th>Change</th><th>Evidence</th><th>Expected effect</th></tr>
-            </thead>
-            <tbody>
-              {[0, 1, 2].map(() => (
-                <tr>
-                  <td><span class="bar"></span></td>
-                  <td><span class="bar"></span></td>
-                  <td><span class="bar bar-s"></span></td>
-                  <td><span class="bar bar-s"></span></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <p class="exp-title">Proposed experiment</p>
+          <dl class="exp">
+            <div><dt>Page</dt><dd><span class="bar"></span></dd></div>
+            <div><dt>Hypothesis</dt><dd><span class="bar"></span></dd></div>
+            <div><dt>Metric</dt><dd>CTR, by device</dd></div>
+            <div><dt>Baseline</dt><dd><span class="bar bar-s"></span></dd></div>
+            <div><dt>Checks</dt><dd>day 3 · 14 · 28</dd></div>
+          </dl>
+        </div>
+        <div class="inbox">
+          <span>Waiting in your inbox</span>
+          <span class="inbox-actions"><span class="fake-btn">Review</span><span class="fake-btn fake-btn-primary">Approve</span></span>
         </div>
       </div>
-      <p class="chat-foot">Illustration. Every step is traced, with its tokens and cost.</p>
+      <p class="chat-foot">Illustration. Nothing goes live until you approve it.</p>
     </figure>
   </div>
 </section>

@@ -63,15 +63,26 @@ Copie comandos e links do README, nunca de memória.
   humor do jabuti. Mostre o mecanismo (loop, shell, Contract), não adjetivos.
 - **Idioma:** o README e o código estão em inglês; o texto do site segue em inglês, salvo pedido
   contrário.
-- **Foco na dor, não na construção** (pedido do dono, 2026-11-12). O site vende o problema que o
-  Jabuti resolve para quem faz SEO: IA de chat dá conselho genérico porque nunca viu os dados;
-  o agente do Jabuti puxa Search Console/GA4, analisa com script e traz recomendação com evidência,
-  no seu servidor e com aprovação. Como ele é feito (sem framework, Contract) fica na seção "For
-  developers", no fim da página.
-- **SEO do próprio site:** title e H1 com "AI SEO agent"; termos-alvo pesquisados: AI SEO agent,
-  Search Console AI agent, quick wins, self-hosted, open source. Concorrentes vistos nas SERPs:
-  OpenSEO, DispatchSEO, servidores MCP de Search Console. O FAQ (`src/data/faq.ts`) alimenta a
-  página e o JSON-LD `FAQPage`.
+- **Três premissas** (definidas pelo dono, 2026-11-12). Todo o site se organiza nelas:
+  1. **Contexto completo:** impressões, cliques e conversões (GA4 key events), mais site, página de
+     resultados e negócio (brief). O dono escolhe a north star; ela vai no brief e vira o critério
+     dos marcos.
+  2. **Um agente que age, não só reage:** plano com marcos aprovados, cada mudança como
+     experimento com baseline (checagens em 3/14/28 dias, por dispositivo, páginas de controle),
+     rotinas agendadas, inbox.
+  3. **Feito para construir autoridade:** a skill `data-study` (estudos originais que ganham
+     citações e links).
+- **SEO, AEO e GEO**, não só SEO. AEO = página de resultados bloco a bloco (AI overview, PAA);
+  GEO = `ai_mentions` do DataForSEO (quem as respostas de IA citam) + estudos citáveis.
+- **Foco na dor, não na construção.** Como ele é feito (sem framework, Contract) fica em "For
+  developers", no fim da home. Não diga que a IA "nunca viu seus dados": dá para exportar ou
+  conectar. A dor real é que o chat responde, mas o trabalho (contexto, seguimento, medição,
+  autoridade) continua com a pessoa.
+- **Publicação de mudanças:** o agente propõe numa branch, o dono revisa no GitHub e o Jabuti faz
+  o merge ao aprovar (DECISIONS 2026-11-05). Não fale em "pull request".
+- **SEO do próprio site:** title e H1 com "AI agent for SEO, AEO and GEO". Concorrentes vistos nas
+  SERPs: OpenSEO, DispatchSEO, servidores MCP de Search Console. O FAQ (`src/data/faq.ts`) alimenta
+  a página e o JSON-LD `FAQPage`.
 - **Open source primeiro.** O CTA principal é o repositório e a instalação, não um cadastro.
 - Nada de dados privados, credenciais ou conteúdo real de usuários em páginas, exemplos ou commits.
 - PRs não mencionam o Claude Code.
@@ -81,13 +92,15 @@ Copie comandos e links do README, nunca de memória.
 **Astro 7 (estático), pnpm, Node 26, deploy no GitHub Pages** (decidido em 2026-11-12, a pedido do
 dono; substituiu uma primeira versão em HTML puro).
 
-- Estrutura: `src/pages/index.astro` monta as seções de `src/components/` (Hero, Problems,
-  Workflow, Capabilities, Install, Faq, Developers, Status). O texto de cada seção fica em arrays no
-  topo do componente; o FAQ em `src/data/faq.ts`. Links e comandos do produto ficam em
-  `src/consts.ts`: copie-os do README. A logo (`Logo.astro`, `public/favicon.svg`) é o
-  `TortoiseIcon` de `packages/ui/src/Icons.tsx` sobre `#2f6b4f`, igual à interface.
-- `public/og.png` (1200×630) é a imagem de compartilhamento; foi gerada de um HTML com o Chrome
-  headless. Se o título mudar, gere de novo.
+- Páginas: `/` (home), `/install/`, `/blog/` com posts em `src/content/blog/*.md` (coleção
+  `blog` em `src/content.config.ts`; `draft: true` esconde no build), `/rss.xml`, `404`.
+- Home: `src/pages/index.astro` monta Hero, Pillars, Context (01), Autonomy (02), Authority (03),
+  SearchModes, Control, InstallCta, Faq, Developers, Status. O texto fica em arrays no topo de
+  cada componente; o FAQ em `src/data/faq.ts`. Links e comandos do produto em `src/consts.ts`.
+  A logo (`Logo.astro`, `public/favicon.svg`) é o `TortoiseIcon` de `packages/ui/src/Icons.tsx`
+  sobre `#2f6b4f`, igual à interface.
+- Blog: cada post só afirma o que está no produto (README, AGENTS.md, docs/DECISIONS.md, skills,
+  templates). Autor padrão "Jabuti"; o dono pode trocar no frontmatter.
 - Estilo: `src/styles/global.css`, com as cores "Forest Console" do `docs/DESIGN.md` do produto e
   modo escuro. Sem framework de CSS.
 - Fontes: Hanken Grotesk e JetBrains Mono pela Fonts API do Astro (`astro.config.mjs`), baixadas

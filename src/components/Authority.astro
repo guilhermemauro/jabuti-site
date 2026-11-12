@@ -1,0 +1,60 @@
+---
+// From skills/data-study/SKILL.md in the product repository.
+const steps: { title: string; body: string }[] = [
+  {
+    title: "Pick a question nobody answered",
+    body: "One question your niche asks, answerable with a number. The agent finds it in your Search Console queries, People Also Ask, the news and what your customers ask, and checks nobody published the same figure.",
+  },
+  {
+    title: "Use data only you have",
+    body: "Your own files (PDF, Word, Excel, slides, exports), public sources such as official statistics and open data, or a survey of your audience. Your data is the strongest: nobody else has it.",
+  },
+  {
+    title: "Analyze it so it holds up",
+    body: "A script that reruns from the raw files and gives the same numbers, with the base, the period and medians where averages mislead. A correlation is written as an association, never a cause.",
+  },
+  {
+    title: "Publish a page made to be cited",
+    body: "The main finding with its number up front, findings that make sense quoted alone, charts with their data as tables, methodology, a ready \"how to cite\" line, the CSV, and Article and Dataset structured data.",
+  },
+  {
+    title: "Get it cited, keep it current",
+    body: "The agent lists the journalists, blogs and sites that cite figures on the topic and drafts the e-mails; you send them. Next year it reruns the analysis on the same URL, so the links keep counting.",
+  },
+];
+
+const privacy = [
+  "Only aggregates are published",
+  "Groups under 10 people or records are left out",
+  "No confidential business figures unless you say they are public",
+  "You approve every figure before anything goes out",
+];
+---
+
+<section id="authority" class="section section-alt">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">03 · Built to earn authority</p>
+      <h2>Publish the number everyone else cites.</h2>
+      <p>
+        Journalists, blogs and AI answers need a figure to cite, and they cite whoever published it
+        first and clearly. Jabuti's data-study skill turns your data into that figure: an original
+        study on your site that earns links and citations.
+      </p>
+    </header>
+    <ol class="steps steps-5">
+      {
+        steps.map((s) => (
+          <li>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+    <div class="rules">
+      <p class="rules-title">Your data stays yours</p>
+      <ul>{privacy.map((r) => <li>{r}</li>)}</ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,63 @@
+---
+// From docs/DECISIONS.md: "Autonomy: plans, experiments, routine runs and the inbox" (C19),
+// "Publishing with a deploy key only the runner holds" and "Jabuti picks the milestone".
+const steps: { tag: string; title: string; body: string }[] = [
+  {
+    tag: "plan",
+    title: "You approve the milestones",
+    body: "Each milestone has a goal, a success criterion and a due date. The agent only sees the ones you approved, never sets their goal, and marks one done only on evidence.",
+  },
+  {
+    tag: "experiment",
+    title: "Each change is an experiment",
+    body: "A hypothesis, a metric and a baseline before anything ships. CTR and position are measured by device, over periods of equal length, next to control pages.",
+  },
+  {
+    tag: "publish",
+    title: "You review, Jabuti ships",
+    body: "The agent proposes the change on a branch of your site's repository. You review it on GitHub; Jabuti merges it when you approve, and that day starts the measurement.",
+  },
+  {
+    tag: "routine",
+    title: "It keeps going without you",
+    body: "Routine runs measure every day and, on their act days, propose the next change. Checks are recorded at day 3, 14 and 28 by default. Each run leaves a report.",
+  },
+];
+
+const rules = [
+  "Control pages never change",
+  "A page with a proposal or under measurement is locked",
+  "At most 3 open proposals",
+  "A rejected change to a page waits 30 days",
+  "Routine spend stops at a monthly cap",
+  "Unattended runs never approve anything",
+];
+---
+
+<section id="autonomy" class="section">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">02 · An agent that acts, not reacts</p>
+      <h2>Autonomous, not unsupervised.</h2>
+      <p>
+        You do not have to keep prompting. Give the agent a goal, approve the plan, and it works
+        toward it on a schedule, testing one measured change at a time.
+      </p>
+    </header>
+    <ol class="steps">
+      {
+        steps.map((s) => (
+          <li>
+            <span class="step-tag">{s.tag}</span>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+    <div class="rules">
+      <p class="rules-title">Rules written in code, not in a prompt</p>
+      <ul>{rules.map((r) => <li>{r}</li>)}</ul>
+    </div>
+  </div>
+</section>

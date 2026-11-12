@@ -1,0 +1,69 @@
+---
+// SEO / AEO / GEO, each mapped to what the product actually has:
+// gsc, ga4, pagespeed, site_crawl, page_structure, dataforseo (serp, keywords, ai_mentions),
+// serper, and the data-study skill.
+const modes: { abbr: string; name: string; goal: string; does: string[] }[] = [
+  {
+    abbr: "SEO",
+    name: "Search engine optimization",
+    goal: "Rank and get the click on Google.",
+    does: [
+      "Finds queries and pages that gained or lost, comparing equal periods",
+      "Inspects why a page is not indexed",
+      "Checks Lighthouse, LCP, INP and CLS on the pages that matter",
+      "Researches keywords with volume, difficulty and intent",
+      "Briefs a writer subagent for new pages, in any language",
+    ],
+  },
+  {
+    abbr: "AEO",
+    name: "Answer engine optimization",
+    goal: "Be the answer Google shows before the links.",
+    does: [
+      "Reads the results page block by block: AI overview, People Also Ask, videos, top stories",
+      "Keeps the AI overview's text and every source it cites",
+      "Shows who answers each People Also Ask question",
+      "Explains a click-through rate by what competes with the page for the click",
+    ],
+  },
+  {
+    abbr: "GEO",
+    name: "Generative engine optimization",
+    goal: "Get cited when AI writes the answer.",
+    does: [
+      "Lists the questions Google's AI overviews and ChatGPT answer citing your domain",
+      "Shows who they cite instead of you, for a domain or a topic",
+      "Turns your own data or public data into an original study others can cite",
+    ],
+  },
+];
+---
+
+<section id="seo-aeo-geo" class="section">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">SEO, AEO and GEO</p>
+      <h2>Be found, be the answer, be cited.</h2>
+      <p>
+        People now get answers from AI overviews and chat assistants as often as from a list of
+        links. The same agent works on all three, from the same data.
+      </p>
+    </header>
+    <div class="modes">
+      {
+        modes.map((m) => (
+          <article class="mode">
+            <p class="mode-abbr">{m.abbr}</p>
+            <h3>{m.name}</h3>
+            <p class="mode-goal">{m.goal}</p>
+            <ul>{m.does.map((d) => <li>{d}</li>)}</ul>
+          </article>
+        ))
+      }
+    </div>
+    <p class="aside">
+      AEO and GEO data come from the DataForSEO connector, with your own DataForSEO account.
+      ChatGPT citation data covers the United States in English; Google's covers more places.
+    </p>
+  </div>
+</section>

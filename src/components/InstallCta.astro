@@ -1,0 +1,23 @@
+---
+import CopyCommand from "./CopyCommand.astro";
+import { INSTALL_SH } from "../consts";
+---
+
+<section id="install" class="section">
+  <div class="wrap install-cta">
+    <div>
+      <p class="eyebrow">Install</p>
+      <h2>On your server, with one command.</h2>
+      <p class="muted">
+        Jabuti, its sandboxed shell and Caddy with automatic HTTPS, on any Ubuntu or Debian VPS. Or
+        use the Hostinger button, AWS CloudFormation, a DigitalOcean Droplet, or your own machine.
+      </p>
+    </div>
+    <div>
+      <CopyCommand command={INSTALL_SH} label="Copy install command" />
+      <p class="ctas">
+        <a class="btn btn-primary" href="/install/">See every install option →</a>
+      </p>
+    </div>
+  </div>
+</section>

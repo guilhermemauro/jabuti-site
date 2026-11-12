@@ -1,0 +1,72 @@
+---
+// What an agent knows about the business: agents/assistant (onboarding), agents/seo-example
+// (brief interview: "what counts as a conversion"), the gsc and ga4 connectors (key events),
+// memory (C14, C18) and the plan (milestone criterion set by the owner, C19).
+const metrics: { name: string; source: string; body: string }[] = [
+  { name: "Impressions", source: "Search Console", body: "How often you show up: visibility, before anyone clicks." },
+  { name: "Clicks", source: "Search Console", body: "How often people choose you: traffic from search." },
+  { name: "Conversions", source: "Analytics 4 key events", body: "What the traffic is worth: sign-ups, leads, purchases." },
+];
+
+const layers: { title: string; body: string }[] = [
+  {
+    title: "Your business",
+    body: "A brief per site: what you sell, what counts as a conversion, the pages that matter, audience, markets, tone, competitors and what was already tried. The agent drafts it from your site and you correct it.",
+  },
+  {
+    title: "Your site",
+    body: "It crawls the site and reads each page's text and structure: headings, links and calls to action.",
+  },
+  {
+    title: "The results page",
+    body: "Every block Google shows for a query, AI overview and People Also Ask included, keyword volume and difficulty, and the AI answers that cite you or a competitor.",
+  },
+  {
+    title: "What happened before",
+    body: "Dated notes of analyses, numbers, changes and results. Nothing is saved until you approve it.",
+  },
+];
+---
+
+<section id="context" class="section section-alt">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">01 · Full context</p>
+      <h2>Impressions, clicks and conversions, in one place.</h2>
+      <p>
+        Ranking well for a query that never converts is not a win. Each Jabuti agent sees the whole
+        funnel for its site, and you decide which number it works to move.
+      </p>
+    </header>
+
+    <div class="funnel">
+      {
+        metrics.map((m, i) => (
+          <div class="funnel-step">
+            <p class="funnel-source">{m.source}</p>
+            <h3>{m.name}</h3>
+            <p>{m.body}</p>
+            {i < metrics.length - 1 && <span class="funnel-arrow" aria-hidden="true">→</span>}
+          </div>
+        ))
+      }
+    </div>
+    <p class="northstar">
+      <strong>You choose the north star.</strong> Tell the agent which metric matters most for this
+      site; it goes into the agent's brief, and the milestones you approve carry it as their
+      success criterion.
+    </p>
+
+    <h3 class="sub-head">And everything around the numbers</h3>
+    <ol class="layers">
+      {
+        layers.map((l) => (
+          <li>
+            <h3>{l.title}</h3>
+            <p>{l.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

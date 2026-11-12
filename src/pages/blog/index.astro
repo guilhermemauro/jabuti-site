@@ -1,0 +1,45 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getPosts, formatDate } from "../../lib/blog";
+
+const posts = await getPosts();
+---
+
+<Base
+  title="Blog · Jabuti: SEO, AEO and GEO with AI agents"
+  description="How to run SEO, AEO and GEO with AI agents that work from your own data: experiments, plans, Search Console analysis and how Jabuti is built."
+>
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Blog</p>
+      <h1>Notes on SEO, AEO and GEO with agents.</h1>
+      <p class="lede">
+        How we use AI agents for search work, what we learn building Jabuti, and what changes when
+        AI writes the answer. <a href="/rss.xml">RSS feed</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="wrap">
+      <ul class="post-list">
+        {
+          posts.map((p) => (
+            <li>
+              <article>
+                <p class="post-meta">
+                  <time datetime={p.data.date.toISOString()}>{formatDate(p.data.date)}</time>
+                  {p.data.tags.length > 0 && <span> · {p.data.tags.join(", ")}</span>}
+                </p>
+                <h2>
+                  <a href={`/blog/${p.id}/`}>{p.data.title}</a>
+                </h2>
+                <p>{p.data.description}</p>
+              </article>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>
